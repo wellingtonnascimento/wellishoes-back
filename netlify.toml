@@ -1,0 +1,6 @@
+[dev]
+    command = "npm run serve"
+    functions ="dist"
+
+[build]
+    functions = "dist"
