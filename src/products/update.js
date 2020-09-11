@@ -12,7 +12,11 @@ exports.handler = async (event, context) => {
   const id = event.id;
   console.log(`Function  'update' invoked. update: ${id}`);
   return client
+<<<<<<< HEAD
+    .query(q.Update(q.Ref(`classes/products/${id}`), { data }))
+=======
     .query(q.Update(q.Ref(`classes/customers/${id}`), { data }))
+>>>>>>> fb6fc113188377b5c29f669e4150d72548eedc87
     .then((response) => {
       console.log("success", response);
       return {
