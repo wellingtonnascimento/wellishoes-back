@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "netlify-lambda serve ./src/products --config ./configs/webpack.functions.js",
-    "build": "netlify-lambda build ./src/products --config ./configs/webpack.functions.js",
+    "serve": "netlify-lambda serve ./src --config ./configs/webpack.functions.js",
+    "build": "netlify-lambda build ./src --config ./configs/webpack.functions.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
