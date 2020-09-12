@@ -1,6 +1,6 @@
 [dev]
     command = "npm run serve"
-    functions ="lambda"
+    functions ="dist"
 
 [build]
     functions = "dist"
