@@ -6,28 +6,16 @@ const client = new faunadb.Client({
 });
 
 exports.handler = async (event, context) => {
-  console.log("Function `read-all` invoked");
+  const id = event.id;
+  console.log(`Function 'read' invoked. Read id: ${id}`);
   return client
-    .query(q.Paginate(q.Match(q.Ref("indexes/all_products"))))
+    .query(q.Get(q.Ref(`classes/products/${id}`)))
     .then((response) => {
-      const itemsRefs = response.data;
-
-      const getAllItemsDataQuery = itemsRefs.map((ref) => {
-        return q.Get(ref);
-      });
-
-      return client.query(getAllItemsDataQuery).then((ret) => {
-        const wellformedData = ret.map((malformedResponse) => {
-          return {
-            id: malformedResponse.ts,
-            ...malformedResponse.data,
-          };
-        });
-        return {
-          statusCode: 200,
-          body: JSON.stringify(wellformedData),
-        };
-      });
+      console.log("success", response);
+      return {
+        statusCode: 200,
+        body: JSON.stringify(response),
+      };
     })
     .catch((error) => {
       console.log("error", error);
