@@ -11,7 +11,7 @@ const client = new faunadb.Client({
 
 exports.handler = async (event, context) => {
   const dataa = JSON.parse(event.body);
-  const data = event.headers["Content-Type"] || event.headers["content-type"];
+  const data = upload.single(event);
 
   console.log("Function `create` invoked", data);
   const item = {
