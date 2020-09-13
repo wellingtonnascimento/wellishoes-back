@@ -6,7 +6,7 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB_SERVER_SECRET,
 });
 
-exports.handler = async (event, context) => {
+module.exports = async (event, context) => {
   const data = JSON.parse(event.body);
   console.log("Function `create` invoked", data);
   const item = {

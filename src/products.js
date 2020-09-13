@@ -6,12 +6,12 @@ exports.handler = async (event, context) => {
     case "GET":
       // e.g. GET /.netlify/functions/products
       if (segments.length === 0) {
-        return require("./products/read-all");
+        return require("./products/read-all")(event, context);
       }
       // e.g. GET /.netlify/functions/products/123456
       if (segments.length === 1) {
         event.id = segments[0];
-        return require("./products/read");
+        return require("./products/read").handler(event, context);
       } else {
         return {
           statusCode: 500,
