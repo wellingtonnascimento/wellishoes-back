@@ -1,13 +1,18 @@
+const multer = require("multer");
+const { storage } = require("../../configs/multerConfig");
+
+const upload = multer({ storage: storage });
+
 const faunadb = require("faunadb");
-
 const q = faunadb.query;
-
 const client = new faunadb.Client({
   secret: process.env.FAUNADB_SERVER_SECRET,
 });
 
 exports.handler = async (event, context) => {
-  const data = JSON.parse(event.body);
+  const dataa = JSON.parse(event.body);
+  const data = event.headers["Content-Type"] || event.headers["content-type"];
+
   console.log("Function `create` invoked", data);
   const item = {
     data: data,
