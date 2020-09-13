@@ -7,6 +7,7 @@ const client = new faunadb.Client({
 
 exports.handler = async (event, context) => {
   console.log("Function `read-all` invoked");
+
   return client
     .query(q.Paginate(q.Match(q.Ref("indexes/all_products"))))
     .then((response) => {
@@ -25,6 +26,11 @@ exports.handler = async (event, context) => {
         });
         return {
           statusCode: 200,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+          },
           body: JSON.stringify(wellformedData),
         };
       });
