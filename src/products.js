@@ -6,12 +6,12 @@ exports.handler = async (event, context) => {
     case "GET":
       // e.g. GET /.netlify/functions/products
       if (segments.length === 0) {
-        return require("./products/read-all")(event, context);
+        return require("./products/read-all").handler(event, context);
       }
       // e.g. GET /.netlify/functions/products/123456
       if (segments.length === 1) {
         event.id = segments[0];
-        return require("./products/read")(event, context);
+        return require("./products/read").handler(event, context);
       } else {
         return {
           statusCode: 500,
@@ -21,13 +21,13 @@ exports.handler = async (event, context) => {
       }
     case "POST":
       // e.g. POST /.netlify/functions/products with a body of key value pair objects, NOT strings
-      return require("./products/create")(event, context);
+      return require("./products/create").handler(event, context);
     case "PUT":
       // e.g. PUT /.netlify/functions/products/123456 with a body of key value pair objects, NOT strings
       if (segments.length === 1) {
         event.id = segments[0];
         console.log(event.id);
-        return require("./products/update")(event, context);
+        return require("./products/update").handler(event, context);
       } else {
         return {
           statusCode: 500,
@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
       // e.g. DELETE /.netlify/functions/products/123456
       if (segments.length === 1) {
         event.id = segments[0];
-        return require("./products/delete")(event, context);
+        return require("./products/delete").handler(event, context);
       } else {
         return {
           statusCode: 500,
