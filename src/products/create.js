@@ -11,12 +11,14 @@ const client = new faunadb.Client({
 
 exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
-  const dataI = upload.single("image");
+  //const dataI = upload.single("image");
 
   console.log("Function `create` invoked", data);
   const item = {
     data: data,
+    image: image,
   };
+  upload.single("data[image]");
 
   return client
     .query(q.Create(q.Ref("classes/products"), item))
