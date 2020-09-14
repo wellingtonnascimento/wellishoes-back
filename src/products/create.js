@@ -16,7 +16,6 @@ exports.handler = async (event, context) => {
   console.log("Function `create` invoked", data);
   const item = {
     data: data,
-    image: image,
   };
 
   return client
