@@ -1,8 +1,3 @@
-import parser from "lambda-multipart-parser";
-const { storage } = require("../../configs/multerConfig");
-
-const upload = multer({ storage: storage });
-
 const faunadb = require("faunadb");
 const q = faunadb.query;
 const client = new faunadb.Client({
@@ -22,7 +17,6 @@ exports.handler = async (event, context) => {
       return {
         statusCode: 200,
         headers: {
-          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Headers": "Content-Type",
           "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
