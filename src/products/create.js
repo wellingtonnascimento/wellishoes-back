@@ -1,4 +1,4 @@
-const multer = require("multer");
+import parser from "lambda-multipart-parser";
 const { storage } = require("../../configs/multerConfig");
 
 const upload = multer({ storage: storage });
@@ -11,15 +11,12 @@ const client = new faunadb.Client({
 
 exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
-  const image = upload.single("image");
 
   console.log("Function `create` invoked", data);
-  const item = {
-    data: data,
-  };
+ 
 
   return client
-    .query(q.Create(q.Ref("classes/products"), item))
+    .query(q.Create(q.Ref("classes/products"), data))
     .then((response) => {
       console.log("success", response);
 
