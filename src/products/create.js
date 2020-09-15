@@ -19,9 +19,9 @@ exports.handler = async (event, context) => {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+          "Access-Control-Allow-Methods": "POST",
         },
-        body: JSON.stringify(response),
+        body: JSON.stringify(statusCode),
       };
     })
     .catch((error) => {
