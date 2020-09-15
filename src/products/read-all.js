@@ -5,7 +5,7 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB_SERVER_SECRET,
 });
 
-module.exports = async (event, context) => {
+exports.handler = async (event, context) => {
   console.log("Function `read-all` invoked");
 
   return client
@@ -31,7 +31,7 @@ module.exports = async (event, context) => {
             "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
           },
-          body: JSON.stringify({ title }),
+          body: JSON.stringify(wellformedData),
         };
       });
     })

@@ -5,7 +5,7 @@ exports.handler = async (event, context) => {
   switch (event.httpMethod) {
     case "GET":
       if (segments.length === 0) {
-        return require("./products/read-all")(event, context);
+        return require("./products/read-all").handler(event, context);
       }
       if (segments.length === 1) {
         event.id = segments[0];
