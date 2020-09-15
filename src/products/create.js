@@ -7,13 +7,9 @@ const client = new faunadb.Client({
 exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
 
-  console.log("Function `create` invoked", data);
-
   return client
     .query(q.Create(q.Ref("classes/products"), { data }))
     .then((response) => {
-      console.log("success", response);
-
       return {
         statusCode: 200,
         headers: {
@@ -25,8 +21,6 @@ exports.handler = async (event, context) => {
       };
     })
     .catch((error) => {
-      console.log("error", error);
-
       return {
         statusCode: 400,
         body: JSON.stringify(error),

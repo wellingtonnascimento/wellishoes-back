@@ -9,7 +9,6 @@ exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
 
   const id = event.id;
-  console.log(`Function  'update' invoked. update: ${id}`);
   return client
     .query(q.Update(q.Ref(q.Collection(`products`), id), { data }))
     .then((response) => {
