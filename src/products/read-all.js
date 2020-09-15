@@ -30,6 +30,7 @@ module.exports = async (event, context) => {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "Content-Type",
           },
+
           body: JSON.stringify({ title, price, quantity }),
         };
       });
