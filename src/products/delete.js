@@ -6,17 +6,14 @@ const client = new faunadb.Client({
 });
 exports.handler = async (event, context) => {
   const id = event.id;
-  console.log(`Function 'delete' invoked. delete id:: ${id}`);
   return client
     .query(q.Delete(q.Ref(q.Collection("products"), id)))
     .then((response) => {
-      console.log("success", response);
       return {
         statusCode: 204,
       };
     })
     .catch((error) => {
-      console.log("error", error);
       return {
         statusCode: 400,
         body: JSON.stringify(error),

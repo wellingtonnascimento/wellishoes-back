@@ -6,8 +6,6 @@ const client = new faunadb.Client({
 });
 
 exports.handler = async (event, context) => {
-  console.log("Function `read-all` invoked");
-
   return client
     .query(q.Paginate(q.Match(q.Ref("indexes/all_products"))))
     .then((response) => {
@@ -36,7 +34,6 @@ exports.handler = async (event, context) => {
       });
     })
     .catch((error) => {
-      console.log("error", error);
       return {
         statusCode: 400,
         body: JSON.stringify(error),

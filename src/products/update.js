@@ -6,7 +6,6 @@ const client = new faunadb.Client({
 });
 
 exports.handler = async (event, context) => {
-  console.log(event.body);
   const data = JSON.parse(event.body);
 
   const id = event.id;
@@ -14,14 +13,12 @@ exports.handler = async (event, context) => {
   return client
     .query(q.Update(q.Ref(q.Collection(`products`), id), { data }))
     .then((response) => {
-      console.log("success", response);
       return {
         statusCode: 200,
         body: JSON.stringify(response),
       };
     })
     .catch((error) => {
-      console.log("error", error);
       return {
         statusCode: 400,
         body: JSON.stringify(error),
