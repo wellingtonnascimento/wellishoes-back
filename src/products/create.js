@@ -13,7 +13,6 @@ exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
 
   console.log("Function `create` invoked", data);
- 
 
   return client
     .query(q.Create(q.Ref("classes/products"), data))
@@ -22,6 +21,12 @@ exports.handler = async (event, context) => {
 
       return {
         statusCode: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+        },
         body: JSON.stringify(response),
       };
     })
