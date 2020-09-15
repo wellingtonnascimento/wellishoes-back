@@ -7,8 +7,12 @@ const client = new faunadb.Client({
 exports.handler = async (event, context) => {
   const data = JSON.parse(event.body);
 
+  const item = {
+    data: data,
+  };
+
   return client
-    .query(q.Create(q.Ref("classes/products"), { data }))
+    .query(q.Create(q.Ref("classes/products"), item))
     .then((response) => {
       return {
         statusCode: 200,
