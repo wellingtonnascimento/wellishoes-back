@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
   console.log("Function `create` invoked", data);
 
   return client
-    .query(q.Create(q.Ref("classes/products"), data))
+    .query(q.Create(q.Ref("classes/products"), { data }))
     .then((response) => {
       console.log("success", response);
 
