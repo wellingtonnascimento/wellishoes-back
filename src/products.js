@@ -4,11 +4,9 @@ exports.handler = async (event, context) => {
 
   switch (event.httpMethod) {
     case "GET":
-      // e.g. GET /.netlify/functions/products
       if (segments.length === 0) {
         return require("./products/read-all").handler(event, context);
       }
-      // e.g. GET /.netlify/functions/products/123456
       if (segments.length === 1) {
         event.id = segments[0];
         return require("./products/read").handler(event, context);
@@ -36,7 +34,6 @@ exports.handler = async (event, context) => {
         };
       }
     case "DELETE":
-      // e.g. DELETE /.netlify/functions/products/123456
       if (segments.length === 1) {
         event.id = segments[0];
         return require("./products/delete").handler(event, context);
@@ -48,7 +45,6 @@ exports.handler = async (event, context) => {
         };
       }
     case "OPTIONS":
-      // To enable CORS
       const headers = {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -57,7 +53,7 @@ exports.handler = async (event, context) => {
       };
 
       return {
-        statusCode: 200, // <-- Must be 200 otherwise pre-flight call fails
+        statusCode: 200,
         headers,
         body: "This was a preflight call!",
       };
